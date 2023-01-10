@@ -8,10 +8,12 @@ NOTES
 
 Tasks to obtain the best model:
 
-* [ ] Basic eda
-* [ ] Cross-validation
+* [x] Basic eda
+* [x] Cross-validation
 * [ ] First training
 * [ ] First submission
+* [ ] Merge original dataset
+* [ ] Use AutoGluon framework
 
 ## Train, validation & submission
 
