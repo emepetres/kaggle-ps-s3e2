@@ -10,9 +10,11 @@ Tasks to obtain the best model:
 
 * [x] Basic eda
 * [x] Cross-validation
-* [ ] First training
-* [ ] First submission
+* [x] First training
+* [x] First submission
 * [ ] Merge original dataset
+* [ ] Implement LightGBM and Catboost
+* [ ] Set order in some categories
 * [ ] Use AutoGluon framework
 
 ## Train, validation & submission
@@ -21,7 +23,7 @@ Tasks to obtain the best model:
 cd src
 conda activate ml
 python create_folds.py
-python -W ignore train.py [--model=lgbm]  # [lr|xgb|lgbm|cb]
+python -W ignore train.py [--model=lgbm]  # [rf|svd|xgb|lgbm|cb]
 ```
 
 Submission is stored in outputs folder (see `config.py` for complete path)
