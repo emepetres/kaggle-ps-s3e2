@@ -13,7 +13,7 @@ Tasks to obtain the best model:
 * [x] First training
 * [x] First submission
 * [x] Merge original dataset -> Doesn't seems to improve performance
-* [ ] Implement LightGBM and Catboost
+* [x] Implement LightGBM and Catboost
 * [ ] Set order in some categories
 * [ ] Use AutoGluon framework
 

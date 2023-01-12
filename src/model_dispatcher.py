@@ -7,7 +7,7 @@ import xgboost as xgb
 
 from lightgbm.sklearn import LGBMClassifier
 import lightgbm as lgbm
-# # from catboost import CatBoostRegressor
+from catboost import CatBoostClassifier
 
 from common.encoding import (
     reduce_dimensions_svd,
@@ -128,25 +128,25 @@ class LightGBM(DecisionTreeModel):
         )
 
 
-# # class CatBoost(DecisionTreeModel):
-# #     def fit(self):
-# #         # https://www.kaggle.com/code/alexandershumilin/playground-series-s3-e1-catboost-xgboost-lgbm
-# #         params = {
-# #             "n_estimators": 15000,
-# #             "early_stopping_rounds": 1000,
-# #             "random_seed": 0,
-# #         }
+class CatBoost(DecisionTreeModel):
+    def fit(self):
+        # https://www.kaggle.com/code/alexandershumilin/playground-series-s3-e1-catboost-xgboost-lgbm
+        params = {
+            "n_estimators": 15000,
+            "early_stopping_rounds": 1000,
+            "random_seed": 0,
+        }
 
-# #         # # self.model = CatBoostRegressor(**params)
-# #         self.model = CatBoostRegressor(
-# #             iterations=100_000, loss_function="RMSE", random_seed=0
-# #         )
+        self.model = CatBoostClassifier(**params)
+        # # self.model = CatBoostClassifier(
+        # #     iterations=100_000, loss_function="AUC", random_seed=0
+        # # )
 
-# #         # fit model on training data
-# #         self.model.fit(
-# #             self.x_train,
-# #             self.df_train.loc[:, self.target].values,
-# #             eval_set=[(self.x_valid, self.df_valid[self.target].values)],
-# #             early_stopping_rounds=params["early_stopping_rounds"],
-# #             verbose=0,
-# #         )
+        # fit model on training data
+        self.model.fit(
+            self.x_train,
+            self.df_train.loc[:, self.target].values,
+            eval_set=[(self.x_valid, self.df_valid[self.target].values)],
+            early_stopping_rounds=params["early_stopping_rounds"],
+            verbose=0,
+        )

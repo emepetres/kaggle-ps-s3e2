@@ -12,7 +12,8 @@ from model_dispatcher import (
     DecisionTreeModelSVD,
     XGBoost,
     LightGBM,
-)  # CatBoost
+    CatBoost,
+)
 
 
 def run(fold: int, model: CustomModel) -> Tuple[float, np.ndarray]:
@@ -53,7 +54,7 @@ def run(fold: int, model: CustomModel) -> Tuple[float, np.ndarray]:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--model", type=str, default="xgb")
+    parser.add_argument("--model", type=str, default="lgbm")
 
     args = parser.parse_args()
 
@@ -66,15 +67,15 @@ if __name__ == "__main__":
         model = XGBoost
     elif args.model == "lgbm":
         model = LightGBM
-    # # elif args.model == "cb":
-    # #     model = CatBoost
+    elif args.model == "cb":
+        model = CatBoost
     else:
         raise argparse.ArgumentError(
             "Only 'rf' (random forest)"
             ", 'svd' (random forest with truncate svd)"
             ", 'xgb' (XGBoost)"
             ", 'lgbm (LightGBM)'"
-            # # ", 'cb' (CatBoost)"
+            ", 'cb' (CatBoost)"
             # # "and 'emb' (Tabular NN with embeddings)"
             " models are supported"
         )
