@@ -11,14 +11,14 @@ from model_dispatcher import (
     DecisionTreeModel,
     DecisionTreeModelSVD,
     XGBoost,
-)  # , LightGBM, CatBoost
+    LightGBM,
+)  # CatBoost
 
 
 def run(fold: int, model: CustomModel) -> Tuple[float, np.ndarray]:
     # load the full training data with folds
     df = pd.read_csv(config.TRAIN_FOLDS)
-    df_test = pd.read_csv(config.TEST_DATA)
-    # # df_test["synthetic_data"] = 1
+    df_test = pd.read_csv(config.PREPROCESSED_TEST_DATA)
 
     # all columns are features except target, id and kfold columns
     features = [f for f in df.columns if f not in (config.TARGET, "kfold", "id")]
@@ -64,8 +64,8 @@ if __name__ == "__main__":
         model = DecisionTreeModelSVD
     elif args.model == "xgb":
         model = XGBoost
-    # # elif args.model == "lgbm":
-    # #     model = LightGBM
+    elif args.model == "lgbm":
+        model = LightGBM
     # # elif args.model == "cb":
     # #     model = CatBoost
     else:
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             "Only 'rf' (random forest)"
             ", 'svd' (random forest with truncate svd)"
             ", 'xgb' (XGBoost)"
-            # # ", 'lgbm (LightGBM)'"
+            ", 'lgbm (LightGBM)'"
             # # ", 'cb' (CatBoost)"
             # # "and 'emb' (Tabular NN with embeddings)"
             " models are supported"

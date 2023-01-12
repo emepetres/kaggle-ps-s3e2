@@ -42,7 +42,7 @@ if __name__ == "__main__":
     df = pd.read_csv(config.TRAIN_DATA)
     df_test = pd.read_csv(config.TEST_DATA)
 
-    df, df_test = _merge_with_original_data(df, df_test)
+    # # df, df_test = _merge_with_original_data(df, df_test)
 
     # we create a new column called kfold and fill it with -1
     df["kfold"] = -1

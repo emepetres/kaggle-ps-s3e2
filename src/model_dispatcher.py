@@ -5,8 +5,8 @@ import numpy as np
 from sklearn import ensemble, metrics
 import xgboost as xgb
 
-# # from lightgbm.sklearn import LGBMRegressor
-# # import lightgbm as lgbm
+from lightgbm.sklearn import LGBMClassifier
+import lightgbm as lgbm
 # # from catboost import CatBoostRegressor
 
 from common.encoding import (
@@ -102,30 +102,30 @@ class XGBoost(DecisionTreeModel):
         self.model.fit(self.x_train, self.df_train.loc[:, self.target].values)
 
 
-# # class LightGBM(DecisionTreeModel):
-# #     def fit(self):
-# #         # taken from https://www.kaggle.com/code/phongnguyen1/distance-to-key-locations#LightGBM
-# #         params = {
-# #             # # "n_estimators": 6058,
-# #             # # "num_leaves": 107,
-# #             # # "min_child_samples": 19,
-# #             # # "learning_rate": 0.004899729720251191,
-# #             # # # "log_max_bin": 10,
-# #             # # "colsample_bytree": 0.5094776453903889,
-# #             # # "reg_alpha": 0.007603254267129311,
-# #             # # "reg_lambda": 0.008134379186044243,
-# #         }
+class LightGBM(DecisionTreeModel):
+    def fit(self):
+        # taken from https://www.kaggle.com/code/phongnguyen1/distance-to-key-locations#LightGBM
+        params = {
+            # # "n_estimators": 6058,
+            # # "num_leaves": 107,
+            # # "min_child_samples": 19,
+            # # "learning_rate": 0.004899729720251191,
+            # # # "log_max_bin": 10,
+            # # "colsample_bytree": 0.5094776453903889,
+            # # "reg_alpha": 0.007603254267129311,
+            # # "reg_lambda": 0.008134379186044243,
+        }
 
-# #         self.model = LGBMRegressor(metric="auc", **params)
+        self.model = LGBMClassifier(metric="auc", **params)
 
-# #         # fit model on training data
-# #         self.model.fit(
-# #             self.x_train,
-# #             self.df_train.loc[:, self.target].values,
-# #             eval_set=[(self.x_valid, self.df_valid[self.target].values)],
-# #             callbacks=[lgbm.early_stopping(100, verbose=False)],
-# #             verbose=False,
-# #         )
+        # fit model on training data
+        self.model.fit(
+            self.x_train,
+            self.df_train.loc[:, self.target].values,
+            eval_set=[(self.x_valid, self.df_valid[self.target].values)],
+            callbacks=[lgbm.early_stopping(100, verbose=False)],
+            verbose=False,
+        )
 
 
 # # class CatBoost(DecisionTreeModel):
