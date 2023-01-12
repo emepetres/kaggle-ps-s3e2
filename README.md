@@ -4,7 +4,7 @@ Kaggle Playground Series 3, Episode 2 competition
 
 NOTES
 
-* TODO
+* Catboost default seems to work the best
 
 Tasks to obtain the best model:
 
@@ -12,9 +12,9 @@ Tasks to obtain the best model:
 * [x] Cross-validation
 * [x] First training
 * [x] First submission
-* [x] Merge original dataset -> Doesn't seems to improve performance
-* [x] Implement LightGBM and Catboost
-* [ ] Set order in some categories
+* [x] Merge original dataset -> Doesn't seem to improve performance
+* [x] Implement LightGBM and Catboost -> Improvement
+* [x] Set order in smoke status -> Doesn't seem to improve performance
 * [ ] Use AutoGluon framework
 
 ## Train, validation & submission

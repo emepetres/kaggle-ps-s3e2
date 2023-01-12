@@ -21,9 +21,21 @@ def run(fold: int, model: CustomModel) -> Tuple[float, np.ndarray]:
     df = pd.read_csv(config.TRAIN_FOLDS)
     df_test = pd.read_csv(config.PREPROCESSED_TEST_DATA)
 
+    # # # feature engineering
+    # # smoking_status_mapping = {
+    # #     "Unknown": 0,
+    # #     "never smoked": 1,
+    # #     "formerly smoked": 2,
+    # #     "smokes": 3,
+    # # }
+    # # df.loc[:, "smoking_status"] = df.smoking_status.map(smoking_status_mapping)
+    # # df_test.loc[:, "smoking_status"] = df_test.smoking_status.map(
+    # #     smoking_status_mapping
+    # # )
+
     # all columns are features except target, id and kfold columns
     features = [f for f in df.columns if f not in (config.TARGET, "kfold", "id")]
-    ord_features = ["age", "avg_glucose_level", "bmi"]
+    ord_features = ["age", "avg_glucose_level", "bmi", "smoking_status"]
     cat_features = [
         f for f in features if f not in ord_features
     ]  # all original features are ordinal
