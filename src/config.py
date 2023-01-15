@@ -4,6 +4,7 @@ COMPETITION = "playground-series-s3e2"
 DATA_PATH = DATA_STORAGE_PATH + "/kaggle/" + COMPETITION
 INPUTS = DATA_PATH + "/input"
 PREPROCESSED = DATA_PATH + "/preprocess"
+INTERMEDIATE = DATA_PATH + "/intermediate"
 OUTPUTS = DATA_PATH + "/output"
 
 FOLDS = 5

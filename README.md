@@ -15,7 +15,10 @@ Tasks to obtain the best model:
 * [x] Merge original dataset -> Doesn't seem to improve performance
 * [x] Implement LightGBM and Catboost -> Improvement
 * [x] Set order in smoke status -> Doesn't seem to improve performance
-* [ ] Use AutoGluon framework
+* [x] Use AutoGluon framework -> Improvement
+* [ ] Implement logistic regression
+* [ ] Remove 'Residence_type', 'bmi'
+* [ ] Scale numerical variables between 0 and 1
 
 ## Train, validation & submission
 
