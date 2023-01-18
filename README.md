@@ -2,9 +2,10 @@
 
 Kaggle Playground Series 3, Episode 2 competition
 
-NOTES
+NOTES:
 
-* Catboost default seems to work the best
+* Catboost worked best after tunning, even better than autogluon but close
+* Position 95 of 770 teams, top 12.3%
 
 Tasks to obtain the best model:
 
@@ -16,6 +17,9 @@ Tasks to obtain the best model:
 * [x] Implement LightGBM and Catboost -> Improvement
 * [x] Set order in smoke status -> Doesn't seem to improve performance
 * [x] Use AutoGluon framework -> Improvement
+* [ ] Implement Lasso regression
+* [ ] Use ten folds
+* [ ] Try original dataset without adding label for original/synthetic
 * [ ] Implement logistic regression
 * [ ] Remove 'Residence_type', 'bmi'
 * [ ] Scale numerical variables between 0 and 1

@@ -161,21 +161,31 @@ class CatBoost(DecisionTreeModel):
     def fit(self):
         # https://www.kaggle.com/code/alexandershumilin/playground-series-s3-e1-catboost-xgboost-lgbm
         params = {
-            "n_estimators": 15000,
-            "early_stopping_rounds": 1000,
-            "random_seed": 0,
+            "depth": 3,
+            "learning_rate": 0.01,
+            "rsm": 0.5,
+            "subsample": 0.931,
+            "l2_leaf_reg": 69,
+            "min_data_in_leaf": 20,
+            "random_strength": 0.175,
+            "random_seed": 228,
+            "use_best_model": True,
+            "task_type": "CPU",
+            "bootstrap_type": "Bernoulli",
+            "grow_policy": "SymmetricTree",
+            "loss_function": "Logloss",
+            "eval_metric": "AUC",
         }
 
-        self.model = CatBoostClassifier(**params)
-        # # self.model = CatBoostClassifier(
-        # #     iterations=100_000, loss_function="AUC", random_seed=0
-        # # )
+        self.model = CatBoostClassifier(
+            **params, num_boost_round=10000, early_stopping_rounds=500
+        )
 
         # fit model on training data
         self.model.fit(
             self.x_train,
             self.df_train.loc[:, self.target].values,
             eval_set=[(self.x_valid, self.df_valid[self.target].values)],
-            early_stopping_rounds=params["early_stopping_rounds"],
-            verbose=0,
+            early_stopping_rounds=500,
+            verbose=False,
         )
